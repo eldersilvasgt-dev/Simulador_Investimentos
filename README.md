@@ -1,6 +1,21 @@
 # 📊 Simulador de Investimentos – Planilha Financeira
 
-Este projeto consiste em uma **planilha de simulação de investimentos** desenvolvida para auxiliar usuários na **análise e tomada de decisão financeira**, por meio da projeção do crescimento patrimonial ao longo do tempo com aportes recorrentes, rendimentos e dividendos.
+Este projeto é uma planilha de simulação de investimentos desenvolvida para auxiliar usuários na análise e tomada de decisão financeira, por meio da projeção do crescimento patrimonial mês a mês a partir de aportes e rentabilidade.
+
+---
+
+## Índice
+- [Objetivo](#objetivo)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Parâmetros (Entrada)](#parâmetros-entrada)
+- [Projeção (Cálculos)](#projeção-cálculos)
+- [Resumo (Indicadores)](#resumo-indicadores)
+- [Fórmulas Utilizadas (Visão Geral)](#fórmulas-utilizadas-visão-geral)
+- [Compatibilidade](#compatibilidade)
+- [Limitações](#limitações)
+- [Evoluções Possíveis](#evoluções-possíveis)
+- [Exemplo Rápido](#exemplo-rápido)
+- [Contribuição e Licença](#contribuição-e-licença)
 
 ---
 
@@ -8,122 +23,139 @@ Este projeto consiste em uma **planilha de simulação de investimentos** desenv
 
 Fornecer uma ferramenta simples, clara e estruturada que permita:
 - Simular diferentes cenários de investimento;
-- Avaliar o impacto de aportes mensais;
-- Estimar crescimento patrimonial;
-- Visualizar a geração de renda passiva (dividendos).
+- Avaliar o impacto de aportes regulares;
+- Estimar o crescimento patrimonial ao longo do tempo;
+- Visualizar geração de renda passiva (dividendos).
 
-A planilha automatiza cálculos financeiros recorrentes, reduzindo erros manuais e aumentando a confiabilidade da análise.
+A planilha automatiza cálculos financeiros recorrentes, reduzindo erros manuais e melhorando a confiabilidade da análise.
 
 ---
 
 ## 🗂️ Estrutura do Projeto
 
-A planilha é composta por **três abas principais**, cada uma com uma função específica:
+A planilha contém três abas principais:
 
-### 1️⃣ Parametros
-Aba destinada exclusivamente à **entrada de dados do usuário**.
+### 1️⃣ Parâmetros (entrada)
+Aba destinada exclusivamente à entrada de dados do usuário.
 
-**Campos disponíveis:**
-- Patrimônio Inicial  
-- Aporte Mensal  
-- Taxa de Retorno Mensal (%)  
-- Dividend Yield Mensal (%)  
-- Meses de Simulação  
+Campos recomendados:
+- Patrimônio Inicial (valor monetário)
+- Aporte Mensal (valor monetário)
+- Taxa de Retorno Mensal (%) — taxa média de valorização mensal
+- Dividend Yield Mensal (%) — rendimento por dividendos em % ao mês
+- Meses de Simulação (inteiro)
 
-> ⚠️ Recomenda-se alterar apenas esta aba para simular novos cenários.
+Observação: mantenha apenas esta aba para alterar cenários; as demais abas usam referências para recalcular automaticamente.
 
 ---
 
-### 2️⃣ Projecao
-Aba responsável pela **simulação financeira mês a mês**.
-
-**Principais informações calculadas:**
-- Saldo inicial de cada mês
-- Aportes mensais
-- Rendimentos
+### 2️⃣ Projeção
+Aba que realiza a simulação mês a mês com as colunas típicas:
+- Mês / Período
+- Saldo Inicial do mês
+- Aporte Mensal
+- Rendimentos (juros/valorização)
 - Dividendos
-- Saldo final acumulado
-- Total investido ao longo do tempo
+- Saldo Final do mês
+- Total Investido acumulado
 
-As fórmulas são automaticamente ajustadas ao se estender a simulação para novos meses.
+As fórmulas devem ser arrastadas/estendidas para cobrir o número de meses desejado.
 
 ---
 
 ### 3️⃣ Resumo
-Aba de **consolidação gerencial**, voltada para análise rápida.
-
-**Indicadores apresentados:**
+Aba consolidada com os principais indicadores:
 - Total investido no período
 - Patrimônio final estimado
 - Dividendos médios mensais
+- Rentabilidade média do período
 
-Ideal para comparação entre cenários e avaliação estratégica.
-
----
-
-## ⚙️ Funcionamento do Modelo
-
-1. O usuário informa os dados na aba **Parametros**  
-2. A aba **Projecao** realiza automaticamente os cálculos mensais  
-3. A aba **Resumo** consolida os principais resultados  
-4. Alterações nos parâmetros recalculam toda a simulação em tempo real  
+Útil para comparar cenários e para relatórios rápidos.
 
 ---
 
 ## 📐 Fórmulas Utilizadas (Visão Geral)
 
-- **Rendimento Mensal**
-- 
-- **Dividendos Mensais**  
+As fórmulas abaixo assumem que as percentagens estão no formato porcentagem mensal (ex.: 1% = 1.0).
 
-- **Saldo Final**  
+- Rendimento Mensal:
+  - rendimento = saldo_inicial * (taxa_retorno_mensal / 100)
 
-- **Total Investido**  
+- Dividendos Mensais:
+  - dividendos = saldo_inicial * (dividend_yield_mensal / 100)
+
+- Saldo Final do Mês:
+  - saldo_final = saldo_inicial + aporte_mensal + rendimento + dividendos
+
+- Saldo Inicial do Próximo Mês:
+  - saldo_inicial_prox = saldo_final
+
+- Total Investido (acumulado):
+  - total_investido = patrimonio_inicial + aporte_mensal * número_de_meses_realizados
+
+Observações:
+- Se desejar que dividendos sejam reinvestidos, ajuste a ordem (somar dividendos ao saldo antes do cálculo do rendimento do mês seguinte ou reinvestir imediatamente no aporte).
+- Se taxas foram informadas em termos anuais, converta para mensal: taxa_mensal ≈ (1 + taxa_anual)^(1/12) - 1.
 
 ---
 
 ## 🧩 Compatibilidade
 
-- Microsoft Excel (PT-BR e EN-US)
+- Microsoft Excel (PT‑BR e EN‑US)
 - Google Sheets
 - LibreOffice Calc
 
-> Funções utilizadas: `MAX`, `AVERAGE`
+Funções utilizadas (exemplos): `MAX`, `AVERAGE`, operações aritméticas e referências relativas/absolutas.
 
 ---
 
 ## ⚠️ Limitações
 
-- Não considera inflação
-- Não considera impostos ou taxas
-- Assume taxas constantes ao longo do período
-- Dividendos não são reinvestidos automaticamente
+- Não considera inflação;
+- Não considera impostos (IR) ou taxas de corretagem/gestão;
+- Assume taxas constantes ao longo do período (sem volatilidade);
+- Dividendos não são reinvestidos por padrão (a menos que ajuste na planilha seja feito);
+- Não há tratamento automático de fechamento de mercado, dividendos extraordinários ou eventos corporativos.
 
 ---
 
 ## 🚀 Possíveis Evoluções
 
-- Inclusão de inflação e tributação
-- Reinvestimento automático de dividendos
-- Comparação entre múltiplos cenários
-- Gráficos automáticos de evolução patrimonial
-- Conversão cambial (ex.: dólar)
+- Inclusão de inflação e tributação (simulação de IR sobre ganhos e dividendos);
+- Reinvestimento automático de dividendos (opção ON/OFF);
+- Comparação entre múltiplos cenários lado a lado;
+- Gráficos automáticos de evolução patrimonial e rendimento;
+- Conversão cambial (ex.: ativos em dólar);
+- Simulação com séries históricas de rentabilidade (volatilidade) para Monte Carlo.
 
 ---
 
-## 👤 Público-Alvo
+## 🧪 Exemplo Rápido
 
-- Investidores iniciantes e intermediários
-- Estudantes de finanças e economia
-- Planejamento financeiro pessoal
-- Uso acadêmico ou corporativo
+Parâmetros:
+- Patrimônio Inicial: R$ 10.000,00  
+- Aporte Mensal: R$ 500,00  
+- Taxa de Retorno Mensal: 1,0 (%)  
+- Dividend Yield Mensal: 0,3 (%)  
+- Meses: 12
 
+Cálculo do primeiro mês (exemplo):
+- rendimento = 10.000 * 0,01 = 100,00  
+- dividendos = 10.000 * 0,003 = 30,00  
+- saldo final = 10.000 + 500 + 100 + 30 = 10.630,00
 
 ---
 
-## 📌 Conclusão
+## 🤝 Contribuição e Licença
 
-Esta planilha oferece uma solução prática e eficiente para simular investimentos, permitindo ao usuário compreender como aportes, tempo e rentabilidade impactam o crescimento patrimonial e a geração de renda passiva.
+Contribuições são bem‑vindas — abra uma issue para discutir mudanças ou um pull request com a melhoria. Inclua exemplos e screenshots quando possível.
+
+Sugestão: adicionar um arquivo LICENSE (ex.: MIT) e um CONTRIBUTING.md com orientações de como colaborar.
 
 ---
 
+## Contato
+
+Se precisar de ajuda para adaptar a planilha ao seu caso (reinvestimento, impostos ou simulações avançadas), abra uma issue ou me envie uma mensagem pelo repositório.
+
+---
