@@ -15,7 +15,6 @@ Este projeto é uma planilha de simulação de investimentos desenvolvida para a
 - [Limitações](#limitações)
 - [Evoluções Possíveis](#evoluções-possíveis)
 - [Exemplo Rápido](#exemplo-rápido)
-- [Contribuição e Licença](#contribuição-e-licença)
 
 ---
 
@@ -143,19 +142,5 @@ Cálculo do primeiro mês (exemplo):
 - rendimento = 10.000 * 0,01 = 100,00  
 - dividendos = 10.000 * 0,003 = 30,00  
 - saldo final = 10.000 + 500 + 100 + 30 = 10.630,00
-
----
-
-## 🤝 Contribuição e Licença
-
-Contribuições são bem‑vindas — abra uma issue para discutir mudanças ou um pull request com a melhoria. Inclua exemplos e screenshots quando possível.
-
-Sugestão: adicionar um arquivo LICENSE (ex.: MIT) e um CONTRIBUTING.md com orientações de como colaborar.
-
----
-
-## Contato
-
-Se precisar de ajuda para adaptar a planilha ao seu caso (reinvestimento, impostos ou simulações avançadas), abra uma issue ou me envie uma mensagem pelo repositório.
 
 ---
